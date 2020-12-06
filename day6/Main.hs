@@ -11,4 +11,4 @@ main :: IO ()
 main = do
   input <- splitOn "\n\n" <$> getContents
   print $ sum $ fmap (length . nub . filter isAlpha) input
-  print $ sum $ fmap (length . foldr intersect ['a' .. 'z'] . words) input
+  print $ sum $ fmap (length . foldr1 intersect . words) input
