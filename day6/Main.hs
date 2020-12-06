@@ -16,9 +16,6 @@ paragraphs s =
 
 main :: IO ()
 main = do
-  input <- getContents
-  print $ sum $ fmap (length . nub . filter isAlpha) $ paragraphs input
-  paragraphs input
-    & fmap (length . (\ws -> filter (\c -> all (c `elem`) ws) ['a' .. 'z']) . words)
-    & sum
-    & print
+  input <- paragraphs <$> getContents
+  print $ sum $ fmap (length . nub . filter isAlpha) input
+  print $ sum $ fmap (length . foldr intersect ['a' .. 'z'] . words) input
