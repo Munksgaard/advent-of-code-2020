@@ -22,7 +22,7 @@ lineToRule s =
 canContainGold :: Rules -> String -> Bool
 canContainGold rules s =
   let keys = M.keys $ rules M.! s
-   in any (== "shiny gold") keys
+   in "shiny gold" `elem` keys
         || any (canContainGold rules) keys
 
 bagsInBag :: Rules -> String -> Int
